@@ -150,3 +150,24 @@ footer {
         grid-template-columns: 1fr;
     }
 }
+
+/* ========== ANIMACIÓN DE TRANSICIÓN ENTRE PÁGINAS ========== */
+.page-transition {
+    animation: fadeOut 0.3s ease-in-out;
+}
+
+@keyframes fadeOut {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+/* Efecto hover mejorado para los botones del menú */
+nav a {
+    transition: all 0.3s ease;
+}
+
+nav a:hover {
+    background-color: rgba(230, 126, 34, 0.2);
+    padding: 8px 12px;
+    border-radius: 5px;
+}
