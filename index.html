@@ -3,99 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rincón Cubano - Recetas, Política y Más</title>
-    <link rel="icon" type="image/png" href="img/logo.png?v=1">
-    <style>
-        /* Este es el diseño visual. Puedes cambiar los colores si quieres */
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
-        }
-        header {
-            background-color: #0a3d62; /* Azul oscuro cubano */
-            color: white;
-            padding: 20px;
-            text-align: center;
-            border-bottom: 5px solid #e67e22;
-        }
-        nav {
-            background-color: #1e5a7a;
-            padding: 10px;
-            text-align: center;
-        }
-        nav a {
-            color: white;
-            margin: 0 15px;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        .container {
-            max-width: 1000px;
-            margin: 20px auto;
-            padding: 0 15px;
-        }
-        /* ZONA IDEAL PARA BANNER DE ADSTERRA */
-        .ad-banner-top {
-            background-color: #ecf0f1;
-            min-height: 90px;
-            margin-bottom: 20px;
-            text-align: center;
-            border: 1px dashed #bdc3c7;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #7f8c8d;
-        }
-        /* Tarjetas de contenido */
-        .grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 20px;
-        }
-        .card {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
-        }
-        .card img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 5px;
-        }
-        h2 {
-            color: #0a3d62;
-            border-bottom: 2px solid #e67e22;
-            padding-bottom: 5px;
-        }
-        .btn {
-            display: inline-block;
-            background-color: #e67e22;
-            color: white;
-            padding: 10px 15px;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-top: 10px;
-        }
-        footer {
-            text-align: center;
-            padding: 20px;
-            background-color: #0a3d62;
-            color: white;
-            margin-top: 30px;
-        }
-        /* SmartLink disfrazado de botón */
-        .smartlink-box {
-            background-color: #fff3e0;
-            border-left: 5px solid #e67e22;
-            padding: 15px;
-            margin: 20px 0;
-        }
-    </style>
+    <title>Rincón Cubano - Inicio</title>
+    <link rel="stylesheet" href="css/estilo.css">
 </head>
 <body>
 
@@ -105,14 +14,14 @@
     </header>
 
     <nav>
-        <a href="#">Inicio</a>
-        <a href="#">Recetas</a>
-        <a href="#">Política</a>
-        <a href="#">Contacto</a>
+        <a href="index.html">🏠 Inicio</a>
+        <a href="noticias/">📰 Noticias</a>
+        <a href="politik/">🗣️ Politik</a>
+        <a href="recetas/">🍲 Recetas</a>
     </nav>
 
     <div class="container">
-        <!-- ########## BANNER 728x90 - ADSTERRA ########## -->
+        <!-- Banner 728x90 - Adsterra -->
         <div class="ad-banner-top">
             <script>
                 atOptions = {
@@ -127,66 +36,55 @@
         </div>
 
         <div class="grid">
-            <!-- COLUMNA IZQUIERDA (Contenido Principal) -->
+            <!-- Columna principal -->
             <div class="main-content">
-                <!-- Artículo destacado sobre Política -->
+                <!-- Artículo destacado de Noticias -->
                 <div class="card">
-                    <h2>📰 Análisis: El panorama actual en Cuba</h2>
-                    <p><small>Publicado hace 2 horas</small></p>
-                    <p>Hablamos sobre los recientes cambios económicos y cómo afectan al día a día del cubano de a pie. Un espacio para la reflexión y el debate respetuoso sobre nuestro futuro. ¿Qué opinas tú?</p>
-                    <a href="#" class="btn">Leer análisis completo</a>
+                    <h2>📰 Destacado: Panorama actual en Cuba</h2>
+                    <p><small>Publicado hace 2 horas en Noticias</small></p>
+                    <p>Hablamos sobre los recientes cambios económicos y cómo afectan al día a día del cubano de a pie. Un espacio para la reflexión y el debate respetuoso sobre nuestro futuro.</p>
+                    <a href="noticias/" class="btn">Ver todas las noticias →</a>
                 </div>
 
-                <!-- Artículo de Receta Destacada -->
+                <!-- Artículo destacado de Politik -->
                 <div class="card">
-                    <h2>🍲 Receta: Frijoles Negros Dormidos al Estilo Tradicional</h2>
-                    <p><small>Publicado ayer</small></p>
-                    <!-- Puedes cambiar esta imagen por una tuya más adelante -->
+                    <h2>🗣️ Análisis Politik: ¿Qué nos depara el futuro?</h2>
+                    <p><small>Publicado ayer en Politik</small></p>
+                    <p>Un análisis profundo sobre el contexto político actual y las perspectivas para los próximos meses. Tu opinión también cuenta.</p>
+                    <a href="politik/" class="btn">Ir a Politik →</a>
+                </div>
+
+                <!-- Receta destacada -->
+                <div class="card">
+                    <h2>🍲 Receta: Frijoles Negros Dormidos</h2>
+                    <p><small>Publicado en Recetas</small></p>
                     <img src="https://placehold.co/600x300/0a3d62/white?text=Frijoles+Dormidos" alt="Frijoles Negros Cubanos" style="width:100%; margin-bottom:15px;">
-                    <p>Aprende el secreto de la abuela para que te queden espesitos y con ese sabor ahumado inconfundible. Ingredientes sencillos, resultado espectacular.</p>
+                    <p>Aprende el secreto de la abuela para que te queden espesitos y con ese sabor ahumado inconfundible.</p>
                     
-                    <!-- ########## SMARTLINK DE ADSTERRA DISFRAZADO ########## -->
                     <div class="smartlink-box">
-                        <strong>🔥 ¿Quieres ver la receta en video?</strong> <br>
-                        <!-- CAMBIA EL "#" POR TU ENLACE DE SMARTLINK DE ADSTERRA -->
-                        <a href="https://www.profitablecpmratenetwork.com/zvdcb11w?key=2efe90c035495862b99218799330a137" target="_blank" style="color: #d35400; font-weight: bold;">Haz clic aquí para ver el paso a paso completo >>></a>
-                        <p style="font-size:12px; margin-top:5px;">(Serás redirigido a una página de apoyo al creador)</p>
+                        <strong>🔥 ¿Quieres ver más recetas?</strong><br>
+                        <a href="recetas/" style="color: #d35400; font-weight: bold;">Explora todas nuestras recetas cubanas >>></a>
                     </div>
                     
-                    <a href="#" class="btn">Ver Receta Completa</a>
+                    <a href="recetas/" class="btn">Ver todas las recetas →</a>
                 </div>
             </div>
 
-            <!-- COLUMNA DERECHA (Sidebar para Recetas Rápidas) -->
+            <!-- Sidebar -->
             <div class="sidebar">
                 <div class="card">
-                    <h3>🥑 Otras Recetas Populares</h3>
-                    <ul style="list-style: none; padding: 0;">
-                        <li style="margin-bottom: 15px;">
-                            <a href="#" style="font-weight: bold;">Ropa Vieja en olla de presión</a><br>
-                            <small>La carne deshebrada perfecta</small>
-                        </li>
-                        <li style="margin-bottom: 15px;">
-                            <a href="#" style="font-weight: bold;">Coctel de Camarones al Estilo Habana</a><br>
-                            <small>Fresco y económico</small>
-                        </li>
-                        <li style="margin-bottom: 15px;">
-                            <a href="#" style="font-weight: bold;">Pan con Lechón (El auténtico)</a><br>
-                            <small>Ideal para Nochebuena</small>
-                        </li>
+                    <h3>📌 Secciones</h3>
+                    <ul class="post-list">
+                        <li><a href="noticias/">📰 Noticias</a><small>Actualidad de Cuba y el mundo</small></li>
+                        <li><a href="politik/">🗣️ Politik</a><small>Análisis y debate político</small></li>
+                        <li><a href="recetas/">🍲 Recetas</a><small>Lo mejor de la cocina cubana</small></li>
                     </ul>
                 </div>
 
-                <!-- ########## NATIVE BANNER - ADSTERRA ########## -->
+                <!-- Native Banner - Adsterra -->
                 <div class="card" style="min-height: 250px; text-align: center; background: #ecf0f1; border: 1px dashed #bdc3c7;">
                     <script async="async" data-cfasync="false" src="https://pl29198215.profitablecpmratenetwork.com/461940b1f9fb7e7ce9a3de48cf4b657b/invoke.js"></script>
                     <div id="container-461940b1f9fb7e7ce9a3de48cf4b657b"></div>
-                </div>
-                
-                <div class="card">
-                    <h3>🗣️ Debate Abierto</h3>
-                    <p>¿Crees que deberíamos importar más alimentos o incentivar la producción local?</p>
-                    <a href="#" style="color: #e67e22;">Participa en la encuesta >></a>
                 </div>
             </div>
         </div>
@@ -194,10 +92,9 @@
 
     <footer>
         <p>© 2026 Rincón Cubano | Hecho con orgullo desde la Isla y para el mundo</p>
-        <p><small>Contacto: rinconcubano@email.com</small></p>
     </footer>
 
-    <!-- ########## SOCIAL BAR - ADSTERRA ########## -->
+    <!-- Social Bar - Adsterra -->
     <script src="https://pl29198216.profitablecpmratenetwork.com/50/2a/f2/502af290221df110ef04f537b763bf76.js"></script>
 
 </body>
