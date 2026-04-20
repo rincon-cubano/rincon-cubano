@@ -6,18 +6,19 @@
     <title>Recetas - Rincón Cubano</title>
     <link rel="icon" type="image/png" href="../img/logo.png">
     <link rel="stylesheet" href="../css/estilo.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
 
     <header>
-    <div style="display: flex; align-items: center; justify-content: center; gap: 15px; flex-wrap: wrap;">
-        <img src="../img/Gemini_Generated_Image_jnjujgjnjujgjnju.png" alt="Isla de Cuba" style="height: 50px; width: auto; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));">
-        <div>
-            <h1 style="margin:0;">🇨🇺 Rincón Cubano</h1>
-            <p style="margin:5px 0 0;">Recetas con sabor a libertad</p>
+        <div style="display: flex; align-items: center; justify-content: center; gap: 15px; flex-wrap: wrap;">
+            <img src="../img/Gemini_Generated_Image_jnjujgjnjujgjnju.png" alt="Isla de Cuba" style="height: 50px; width: auto; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));">
+            <div>
+                <h1 style="margin:0;">🇨🇺 Rincón Cubano</h1>
+                <p style="margin:5px 0 0;">Recetas con sabor a libertad</p>
+            </div>
         </div>
-    </div>
-</header>
+    </header>
 
     <nav>
         <a href="../index.html">🏠 Inicio</a>
@@ -27,16 +28,9 @@
     </nav>
 
     <div class="container">
-        <!-- Banner 728x90 - Adsterra -->
         <div class="ad-banner-top">
             <script>
-                atOptions = {
-                    'key' : '49e50f611a7b128eabe27b672810428b',
-                    'format' : 'iframe',
-                    'height' : 90,
-                    'width' : 728,
-                    'params' : {}
-                };
+                atOptions = { 'key' : '49e50f611a7b128eabe27b672810428b', 'format' : 'iframe', 'height' : 90, 'width' : 728, 'params' : {} };
             </script>
             <script src="https://www.highperformanceformat.com/49e50f611a7b128eabe27b672810428b/invoke.js"></script>
         </div>
@@ -45,40 +39,16 @@
             <div class="main-content">
                 <div class="card">
                     <h2>🍲 Nuestras Recetas Cubanas</h2>
-                    <p style="color:#0a3d62; margin-bottom:20px;">Sabores auténticos de la Isla, directo a tu cocina.</p>
-                    
-                    <ul class="post-list">
-                        <li>
-                            <a href="#">🍛 Frijoles Negros Dormidos</a>
-                            <small>Tradicional • 45 min • ⭐⭐⭐⭐⭐</small>
-                        </li>
-                        <li>
-                            <a href="#">🥩 Ropa Vieja en olla de presión</a>
-                            <small>Carne deshebrada • 1 hora • ⭐⭐⭐⭐⭐</small>
-                        </li>
-                        <li>
-                            <a href="#">🍤 Coctel de Camarones al Estilo Habana</a>
-                            <small>Fresco • 20 min • ⭐⭐⭐⭐</small>
-                        </li>
-                        <li>
-                            <a href="#">🥪 Pan con Lechón (El auténtico)</a>
-                            <small>Para Nochebuena • 3 horas • ⭐⭐⭐⭐⭐</small>
-                        </li>
-                        <li>
-                            <a href="#">🍚 Arroz Congrí (Moros y Cristianos)</a>
-                            <small>Guarnición clásica • 40 min • ⭐⭐⭐⭐⭐</small>
-                        </li>
-                        <li>
-                            <a href="#">🍮 Flan de Leche Cubano</a>
-                            <small>Postre • 1 hora • ⭐⭐⭐⭐</small>
-                        </li>
-                    </ul>
-                    
+                    <p style="color:#0a3d62; margin-bottom:20px;">Sabores auténticos de la Isla.</p>
+                    <div id="lista-recetas"><p style="color:#7f8c8d;">Cargando recetas...</p></div>
+                    <div id="visor-receta" style="display: none;">
+                        <a href="#" onclick="volverALista()" style="color:#e67e22; display: inline-block; margin-bottom: 20px;">← Volver a la lista</a>
+                        <div id="contenido-receta"></div>
+                    </div>
                     <div class="smartlink-box" style="margin-top:30px;">
                         <strong>🔥 ¿Quieres apoyar este proyecto?</strong><br>
-                        <p style="margin:10px 0;">Descubre contenido exclusivo y ayuda a mantener vivo Rincón Cubano.</p>
-                        <a href="#" target="_blank" style="color: #d35400; font-weight: bold;">Haz clic aquí para descubrir más >>></a>
-                        <p style="font-size:12px; margin-top:5px;">(Serás redirigido a una página de apoyo al creador)</p>
+                        <p style="margin:10px 0;">Descubre contenido exclusivo.</p>
+                        <a href="#" target="_blank" style="color: #d35400; font-weight: bold;">Haz clic aquí >>></a>
                     </div>
                 </div>
             </div>
@@ -92,17 +62,10 @@
                         <li><a href="../politik/">🗣️ Politik</a></li>
                     </ul>
                 </div>
-
                 <div class="card">
                     <h3>⭐ Más populares</h3>
-                    <ul class="post-list">
-                        <li><a href="#">Ropa Vieja</a></li>
-                        <li><a href="#">Frijoles Negros</a></li>
-                        <li><a href="#">Pan con Lechón</a></li>
-                    </ul>
+                    <div id="populares-sidebar"><p style="color:#7f8c8d;">Cargando...</p></div>
                 </div>
-
-                <!-- Native Banner - Adsterra -->
                 <div class="card" style="min-height: 250px; text-align: center; background: #ecf0f1; border: 1px dashed #bdc3c7;">
                     <script async="async" data-cfasync="false" src="https://pl29198215.profitablecpmratenetwork.com/461940b1f9fb7e7ce9a3de48cf4b657b/invoke.js"></script>
                     <div id="container-461940b1f9fb7e7ce9a3de48cf4b657b"></div>
@@ -114,12 +77,74 @@
     <footer>
         <p>© 2026 Rincón Cubano | Hecho con orgullo desde la Isla y para el mundo</p>
     </footer>
-    
-    <!-- JavaScript para transiciones -->
-<script src="js/script.js"></script>
 
-    <!-- Social Bar - Adsterra -->
+    <script src="../js/script.js"></script>
     <script src="https://pl29198216.profitablecpmratenetwork.com/50/2a/f2/502af290221df110ef04f537b763bf76.js"></script>
 
+    <script>
+        const GITHUB_USER = 'rincon-cubano';
+        const REPO_NAME = 'rincon-cubano';
+        const CONTENT_PATH = 'contenido/recetas';  // ← CAMBIADO
+        let recetas = [];
+        
+        async function cargarRecetas() {
+            try {
+                const url = `https://api.github.com/repos/${GITHUB_USER}/${REPO_NAME}/contents/${CONTENT_PATH}`;
+                const response = await fetch(url);
+                const files = await response.json();
+                recetas = files.filter(f => f.name.endsWith('.md'));
+                mostrarLista();
+                mostrarPopulares();
+            } catch (e) {
+                document.getElementById('lista-recetas').innerHTML = '<p>Error al cargar.</p>';
+            }
+        }
+        
+        function mostrarLista() {
+            if (recetas.length === 0) {
+                document.getElementById('lista-recetas').innerHTML = '<p>No hay recetas aún. Crea tu primer archivo .md en contenido/recetas/</p>';
+                return;
+            }
+            let html = '<ul class="post-list">';
+            recetas.forEach((r, i) => {
+                const nombre = r.name.replace('.md', '').replace(/-/g, ' ');
+                html += `<li><a href="#" onclick="verReceta(${i}); return false;">${nombre}</a></li>`;
+            });
+            html += '</ul>';
+            document.getElementById('lista-recetas').innerHTML = html;
+        }
+        
+        function mostrarPopulares() {
+            const pop = recetas.slice(0, 3);
+            let html = '<ul class="post-list">';
+            pop.forEach((r, i) => {
+                const nombre = r.name.replace('.md', '').replace(/-/g, ' ');
+                html += `<li><a href="#" onclick="verReceta(${i}); return false;">${nombre}</a></li>`;
+            });
+            html += '</ul>';
+            document.getElementById('populares-sidebar').innerHTML = html || '<p>No hay recetas.</p>';
+        }
+        
+        async function verReceta(index) {
+            const r = recetas[index];
+            try {
+                const url = `https://raw.githubusercontent.com/${GITHUB_USER}/${REPO_NAME}/main/${CONTENT_PATH}/${r.name}`;
+                const response = await fetch(url);
+                const md = await response.text();
+                document.getElementById('contenido-receta').innerHTML = marked.parse(md);
+                document.getElementById('lista-recetas').style.display = 'none';
+                document.getElementById('visor-receta').style.display = 'block';
+            } catch (e) {
+                alert('Error al cargar');
+            }
+        }
+        
+        function volverALista() {
+            document.getElementById('lista-recetas').style.display = 'block';
+            document.getElementById('visor-receta').style.display = 'none';
+        }
+        
+        cargarRecetas();
+    </script>
 </body>
 </html>
