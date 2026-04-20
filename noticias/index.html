@@ -6,7 +6,50 @@
     <title>Noticias - Rincón Cubano</title>
     <link rel="icon" type="image/png" href="../img/logo.png">
     <link rel="stylesheet" href="../css/estilo.css">
+    <!-- Librería para convertir Markdown a HTML -->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        /* Estilos adicionales para el formato periódico */
+        .noticia-destacada {
+            border-bottom: 2px solid #e67e22;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+        }
+        .noticia-destacada h2 {
+            font-size: 28px;
+            border-bottom: none;
+            margin-bottom: 10px;
+        }
+        .noticia-destacada .metadata {
+            color: #7f8c8d;
+            font-size: 14px;
+            margin-bottom: 15px;
+            display: flex;
+            gap: 15px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+        .sidebar .post-list li {
+            padding: 12px 0;
+        }
+        .sidebar .post-list a {
+            font-size: 16px;
+            color: #0a3d62;
+        }
+        .sidebar .post-list a:hover {
+            color: #e67e22;
+        }
+        .loading-message {
+            text-align: center;
+            padding: 40px;
+            color: #7f8c8d;
+        }
+        .fecha-publicacion {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+    </style>
 </head>
 <body>
 
@@ -28,25 +71,32 @@
     </nav>
 
     <div class="container">
+        <!-- Banner 728x90 - Adsterra -->
         <div class="ad-banner-top">
             <script>
-                atOptions = { 'key' : '49e50f611a7b128eabe27b672810428b', 'format' : 'iframe', 'height' : 90, 'width' : 728, 'params' : {} };
+                atOptions = {
+                    'key' : '49e50f611a7b128eabe27b672810428b',
+                    'format' : 'iframe',
+                    'height' : 90,
+                    'width' : 728,
+                    'params' : {}
+                };
             </script>
             <script src="https://www.highperformanceformat.com/49e50f611a7b128eabe27b672810428b/invoke.js"></script>
         </div>
 
         <div class="grid">
+            <!-- Columna principal: Aquí se muestra la noticia desplegada -->
             <div class="main-content">
                 <div class="card">
-                    <h2>📰 Todas las Noticias</h2>
-                    <div id="lista-noticias"><p style="color:#7f8c8d;">Cargando noticias...</p></div>
-                    <div id="visor-noticia" style="display: none;">
-                        <a href="#" onclick="volverALista()" style="color:#e67e22; display: inline-block; margin-bottom: 20px;">← Volver a la lista</a>
-                        <div id="contenido-noticia"></div>
+                    <div id="contenedor-noticia-principal">
+                        <!-- La noticia más reciente se cargará aquí automáticamente -->
+                        <div class="loading-message">⏳ Cargando la última hora...</div>
                     </div>
                 </div>
             </div>
 
+            <!-- Barra lateral: Listado de otras noticias -->
             <div class="sidebar">
                 <div class="card">
                     <h3>📌 Secciones</h3>
@@ -56,10 +106,15 @@
                         <li><a href="../recetas/">🍲 Recetas</a></li>
                     </ul>
                 </div>
+
                 <div class="card">
-                    <h3>🔥 Lo más reciente</h3>
-                    <div id="recientes-sidebar"><p style="color:#7f8c8d;">Cargando...</p></div>
+                    <h3>📰 Otras Noticias</h3>
+                    <div id="listado-otras-noticias">
+                        <div class="loading-message">Cargando...</div>
+                    </div>
                 </div>
+
+                <!-- Native Banner - Adsterra -->
                 <div class="card" style="min-height: 250px; text-align: center; background: #ecf0f1; border: 1px dashed #bdc3c7;">
                     <script async="async" data-cfasync="false" src="https://pl29198215.profitablecpmratenetwork.com/461940b1f9fb7e7ce9a3de48cf4b657b/invoke.js"></script>
                     <div id="container-461940b1f9fb7e7ce9a3de48cf4b657b"></div>
@@ -72,73 +127,167 @@
         <p>© 2026 Rincón Cubano | Hecho con orgullo desde la Isla y para el mundo</p>
     </footer>
 
+    <!-- JavaScript para transiciones -->
     <script src="../js/script.js"></script>
+    <!-- Social Bar - Adsterra -->
     <script src="https://pl29198216.profitablecpmratenetwork.com/50/2a/f2/502af290221df110ef04f537b763bf76.js"></script>
 
     <script>
+        // Configuración
         const GITHUB_USER = 'rincon-cubano';
         const REPO_NAME = 'rincon-cubano';
-        const CONTENT_PATH = 'contenidos/noticias';  // ← CAMBIADO
-        let noticias = [];
+        const CONTENT_PATH = 'contenidos/noticias'; // Ajusta esto si tu carpeta se llama 'contenido'
         
+        let noticias = [];
+
+        // Cargar la lista de noticias desde GitHub
         async function cargarNoticias() {
             try {
                 const url = `https://api.github.com/repos/${GITHUB_USER}/${REPO_NAME}/contents/${CONTENT_PATH}`;
                 const response = await fetch(url);
                 const files = await response.json();
+                
+                // Filtrar solo archivos .md
                 noticias = files.filter(f => f.name.endsWith('.md'));
-                mostrarLista();
-                mostrarRecientes();
-            } catch (e) {
-                document.getElementById('lista-noticias').innerHTML = '<p>Error al cargar.</p>';
+                
+                // Ordenar por fecha de modificación (más reciente primero)
+                // Nota: La API de GitHub no da fecha de modificación fácilmente, 
+                // así que usaremos el nombre para ordenar (puedes mejorar esto después)
+                noticias.sort((a, b) => b.name.localeCompare(a.name));
+                
+                if (noticias.length > 0) {
+                    // Mostrar la noticia más reciente desplegada
+                    cargarNoticiaPrincipal(0);
+                    // Mostrar el listado de otras noticias
+                    mostrarListadoNoticias();
+                } else {
+                    document.getElementById('contenedor-noticia-principal').innerHTML = 
+                        '<p>No hay noticias publicadas aún. Crea tu primer archivo .md en ' + CONTENT_PATH + '/</p>';
+                    document.getElementById('listado-otras-noticias').innerHTML = '';
+                }
+            } catch (error) {
+                console.error('Error cargando noticias:', error);
+                document.getElementById('contenedor-noticia-principal').innerHTML = 
+                    '<p>Error al cargar las noticias. Verifica la ruta: ' + CONTENT_PATH + '</p>';
             }
         }
-        
-        function mostrarLista() {
-            if (noticias.length === 0) {
-                document.getElementById('lista-noticias').innerHTML = '<p>No hay noticias aún. Crea tu primer archivo .md en contenido/noticias/</p>';
+
+        // Cargar y mostrar una noticia específica en el panel principal
+        async function cargarNoticiaPrincipal(index) {
+            const noticia = noticias[index];
+            const contenedor = document.getElementById('contenedor-noticia-principal');
+            
+            // Mostrar loader
+            contenedor.innerHTML = '<div class="loading-message">⏳ Cargando noticia...</div>';
+            
+            try {
+                const url = `https://raw.githubusercontent.com/${GITHUB_USER}/${REPO_NAME}/main/${CONTENT_PATH}/${noticia.name}`;
+                const response = await fetch(url);
+                const markdown = await response.text();
+                const html = marked.parse(markdown);
+                
+                // Obtener un extracto del nombre del archivo para el título (si el markdown no tiene título)
+                const tituloArchivo = noticia.name.replace('.md', '').replace(/-/g, ' ');
+                
+                // Construir el HTML con formato profesional
+                contenedor.innerHTML = `
+                    <div class="noticia-destacada">
+                        <div class="metadata">
+                            <span class="fecha-publicacion">📅 Publicado el 20 de abril, 2026</span>
+                            <span>✍️ Por Rincón Cubano</span>
+                        </div>
+                        <div class="contenido-markdown">
+                            ${html}
+                        </div>
+                    </div>
+                `;
+                
+                // Marcar visualmente cuál es la noticia activa en la barra lateral
+                marcarNoticiaActiva(index);
+            } catch (error) {
+                contenedor.innerHTML = '<p>Error al cargar el contenido de la noticia.</p>';
+            }
+        }
+
+        // Mostrar el listado de otras noticias en la barra lateral
+        function mostrarListadoNoticias() {
+            const contenedor = document.getElementById('listado-otras-noticias');
+            
+            if (noticias.length <= 1) {
+                contenedor.innerHTML = '<p>Pronto más noticias...</p>';
                 return;
             }
+            
             let html = '<ul class="post-list">';
-            noticias.forEach((n, i) => {
-                const nombre = n.name.replace('.md', '').replace(/-/g, ' ');
-                html += `<li><a href="#" onclick="verNoticia(${i}); return false;">${nombre}</a></li>`;
-            });
+            
+            // Mostrar todas excepto la primera (que ya está desplegada)
+            for (let i = 1; i < noticias.length; i++) {
+                const noticia = noticias[i];
+                const titulo = noticia.name.replace('.md', '').replace(/-/g, ' ');
+                html += `
+                    <li>
+                        <a href="#" onclick="cambiarNoticia(${i}); return false;" style="display: block;">
+                            <strong>${titulo}</strong>
+                        </a>
+                        <small style="color: #7f8c8d;">Hace 2 horas</small>
+                    </li>
+                `;
+            }
+            
             html += '</ul>';
-            document.getElementById('lista-noticias').innerHTML = html;
+            contenedor.innerHTML = html;
         }
-        
-        function mostrarRecientes() {
-            const recientes = noticias.slice(0, 3);
+
+        // Cambiar la noticia principal al hacer clic en otra
+        function cambiarNoticia(index) {
+            cargarNoticiaPrincipal(index);
+            
+            // Actualizar el listado de la barra lateral (para reflejar cuál está activa)
+            actualizarListadoConActiva(index);
+        }
+
+        // Actualizar el listado de la barra lateral para marcar la noticia activa
+        function actualizarListadoConActiva(indexActivo) {
+            const contenedor = document.getElementById('listado-otras-noticias');
+            
+            if (noticias.length <= 1) return;
+            
             let html = '<ul class="post-list">';
-            recientes.forEach((n, i) => {
-                const nombre = n.name.replace('.md', '').replace(/-/g, ' ');
-                html += `<li><a href="#" onclick="verNoticia(${i}); return false;">${nombre}</a></li>`;
-            });
+            
+            for (let i = 1; i < noticias.length; i++) {
+                const noticia = noticias[i];
+                const titulo = noticia.name.replace('.md', '').replace(/-/g, ' ');
+                const esActiva = (i === indexActivo);
+                
+                html += `
+                    <li style="${esActiva ? 'background: #f0f7ff; border-left: 3px solid #e67e22; padding-left: 10px;' : ''}">
+                        <a href="#" onclick="cambiarNoticia(${i}); return false;" style="display: block; ${esActiva ? 'color: #e67e22;' : ''}">
+                            <strong>${titulo}</strong>
+                        </a>
+                        <small style="color: #7f8c8d;">Hace 2 horas</small>
+                    </li>
+                `;
+            }
+            
             html += '</ul>';
-            document.getElementById('recientes-sidebar').innerHTML = html || '<p>No hay noticias.</p>';
+            contenedor.innerHTML = html;
         }
-        
-        async function verNoticia(index) {
-            const n = noticias[index];
-            try {
-                const url = `https://raw.githubusercontent.com/${GITHUB_USER}/${REPO_NAME}/main/${CONTENT_PATH}/${n.name}`;
-                const response = await fetch(url);
-                const md = await response.text();
-                document.getElementById('contenido-noticia').innerHTML = marked.parse(md);
-                document.getElementById('lista-noticias').style.display = 'none';
-                document.getElementById('visor-noticia').style.display = 'block';
-            } catch (e) {
-                alert('Error al cargar');
+
+        // Marcar visualmente la noticia activa (la primera al cargar)
+        function marcarNoticiaActiva(index) {
+            // La noticia principal no necesita marca, pero podemos actualizar la barra lateral
+            if (index === 0) {
+                // Es la principal, las demás son "otras"
+                actualizarListadoConActiva(-1); // -1 significa ninguna en la lista lateral está activa
+            } else {
+                actualizarListadoConActiva(index);
             }
         }
-        
-        function volverALista() {
-            document.getElementById('lista-noticias').style.display = 'block';
-            document.getElementById('visor-noticia').style.display = 'none';
-        }
-        
-        cargarNoticias();
+
+        // Iniciar todo al cargar la página
+        window.onload = function() {
+            cargarNoticias();
+        };
     </script>
 </body>
 </html>
