@@ -1,4 +1,5 @@
-## Hi there 👋
+"Sitio web de contenido diverso: recetas tradicionales, opinión política y temas de actualidad. Hecho por y para cubanos curiosos en cualquier parte del mundo."
+
 
 <!--
 **rincon-cubano/rincon-cubano** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
