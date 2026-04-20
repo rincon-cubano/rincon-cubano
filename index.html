@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rincón Cubano - Recetas, Política y Más</title>
+    <style>
+        /* Este es el diseño visual. Puedes cambiar los colores si quieres */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background-color: #0a3d62; /* Azul oscuro cubano */
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 5px solid #e67e22;
+        }
+        nav {
+            background-color: #1e5a7a;
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 0 15px;
+        }
+        /* ZONA IDEAL PARA BANNER DE ADSTERRA */
+        .ad-banner-top {
+            background-color: #ecf0f1;
+            min-height: 90px;
+            margin-bottom: 20px;
+            text-align: center;
+            border: 1px dashed #bdc3c7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #7f8c8d;
+        }
+        /* Tarjetas de contenido */
+        .grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+        }
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+        h2 {
+            color: #0a3d62;
+            border-bottom: 2px solid #e67e22;
+            padding-bottom: 5px;
+        }
+        .btn {
+            display: inline-block;
+            background-color: #e67e22;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #0a3d62;
+            color: white;
+            margin-top: 30px;
+        }
+        /* SmartLink disfrazado de botón */
+        .smartlink-box {
+            background-color: #fff3e0;
+            border-left: 5px solid #e67e22;
+            padding: 15px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>🇨🇺 Rincón Cubano</h1>
+        <p>El sabor de la Isla, el calor del debate y la actualidad que nos une</p>
+    </header>
+
+    <nav>
+        <a href="#">Inicio</a>
+        <a href="#">Recetas</a>
+        <a href="#">Política</a>
+        <a href="#">Contacto</a>
+    </nav>
+
+    <div class="container">
+        <!-- ########## ESPACIO PARA TU PRIMER ANUNCIO DE ADSTERRA (Banner 728x90) ########## -->
+        <div class="ad-banner-top">
+            <!-- AQUÍ PEGARÁS EL CÓDIGO DE ADSTERRA PARA BANNER HORIZONTAL -->
+            Espacio Publicitario (Adsterra Banner)
+        </div>
+
+        <div class="grid">
+            <!-- COLUMNA IZQUIERDA (Contenido Principal) -->
+            <div class="main-content">
+                <!-- Artículo destacado sobre Política -->
+                <div class="card">
+                    <h2>📰 Análisis: El panorama actual en Cuba</h2>
+                    <p><small>Publicado hace 2 horas</small></p>
+                    <p>Hablamos sobre los recientes cambios económicos y cómo afectan al día a día del cubano de a pie. Un espacio para la reflexión y el debate respetuoso sobre nuestro futuro. ¿Qué opinas tú?</p>
+                    <a href="#" class="btn">Leer análisis completo</a>
+                </div>
+
+                <!-- Artículo de Receta Destacada -->
+                <div class="card">
+                    <h2>🍲 Receta: Frijoles Negros Dormidos al Estilo Tradicional</h2>
+                    <p><small>Publicado ayer</small></p>
+                    <!-- Puedes cambiar esta imagen por una tuya más adelante -->
+                    <img src="https://placehold.co/600x300/0a3d62/white?text=Frijoles+Dormidos" alt="Frijoles Negros Cubanos" style="width:100%; margin-bottom:15px;">
+                    <p>Aprende el secreto de la abuela para que te queden espesitos y con ese sabor ahumado inconfundible. Ingredientes sencillos, resultado espectacular.</p>
+                    
+                    <!-- ########## SMARTLINK DE ADSTERRA DISFRAZADO ########## -->
+                    <div class="smartlink-box">
+                        <strong>🔥 ¿Quieres ver la receta en video?</strong> <br>
+                        <!-- CAMBIA EL "#" POR TU ENLACE DE SMARTLINK DE ADSTERRA -->
+                        <a href="#" target="_blank" style="color: #d35400; font-weight: bold;">Haz clic aquí para ver el paso a paso completo >>></a>
+                        <p style="font-size:12px; margin-top:5px;">(Serás redirigido a una página de apoyo al creador)</p>
+                    </div>
+                    
+                    <a href="#" class="btn">Ver Receta Completa</a>
+                </div>
+            </div>
+
+            <!-- COLUMNA DERECHA (Sidebar para Recetas Rápidas) -->
+            <div class="sidebar">
+                <div class="card">
+                    <h3>🥑 Otras Recetas Populares</h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 15px;">
+                            <a href="#" style="font-weight: bold;">Ropa Vieja en olla de presión</a><br>
+                            <small>La carne deshebrada perfecta</small>
+                        </li>
+                        <li style="margin-bottom: 15px;">
+                            <a href="#" style="font-weight: bold;">Coctel de Camarones al Estilo Habana</a><br>
+                            <small>Fresco y económico</small>
+                        </li>
+                        <li style="margin-bottom: 15px;">
+                            <a href="#" style="font-weight: bold;">Pan con Lechón (El auténtico)</a><br>
+                            <small>Ideal para Nochebuena</small>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- ########## SEGUNDO ESPACIO PARA ANUNCIO DE ADSTERRA (Cuadrado 300x250) ########## -->
+                <div class="card" style="min-height: 250px; text-align: center; background: #ecf0f1; border: 1px dashed #bdc3c7;">
+                    <p>Espacio Publicitario (Adsterra Sidebar)</p>
+                    <!-- AQUÍ PEGARÁS EL CÓDIGO DE ADSTERRA PARA BANNER CUADRADO -->
+                </div>
+                
+                <div class="card">
+                    <h3>🗣️ Debate Abierto</h3>
+                    <p>¿Crees que deberíamos importar más alimentos o incentivar la producción local?</p>
+                    <a href="#" style="color: #e67e22;">Participa en la encuesta >></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 Rincón Cubano | Hecho con orgullo desde la Isla y para el mundo</p>
+        <p><small>Contacto: rinconcubano@email.com</small></p>
+    </footer>
+
+</body>
+</html>
