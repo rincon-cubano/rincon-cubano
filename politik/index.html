@@ -6,18 +6,19 @@
     <title>Politik - Rincón Cubano</title>
     <link rel="icon" type="image/png" href="../img/logo.png">
     <link rel="stylesheet" href="../css/estilo.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
 
     <header>
-    <div style="display: flex; align-items: center; justify-content: center; gap: 15px; flex-wrap: wrap;">
-        <img src="../img/Gemini_Generated_Image_jnjujgjnjujgjnju.png" alt="Isla de Cuba" style="height: 50px; width: auto; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));">
-        <div>
-            <h1 style="margin:0;">🇨🇺 Rincón Cubano</h1>
-            <p style="margin:5px 0 0;">Tu sección de noticias por excelencia</p>
+        <div style="display: flex; align-items: center; justify-content: center; gap: 15px; flex-wrap: wrap;">
+            <img src="../img/Gemini_Generated_Image_jnjujgjnjujgjnju.png" alt="Isla de Cuba" style="height: 50px; width: auto; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));">
+            <div>
+                <h1 style="margin:0;">🇨🇺 Rincón Cubano</h1>
+                <p style="margin:5px 0 0;">Tu sección de noticias por excelencia</p>
+            </div>
         </div>
-    </div>
-</header>
+    </header>
 
     <nav>
         <a href="../index.html">🏠 Inicio</a>
@@ -27,16 +28,9 @@
     </nav>
 
     <div class="container">
-        <!-- Banner 728x90 - Adsterra -->
         <div class="ad-banner-top">
             <script>
-                atOptions = {
-                    'key' : '49e50f611a7b128eabe27b672810428b',
-                    'format' : 'iframe',
-                    'height' : 90,
-                    'width' : 728,
-                    'params' : {}
-                };
+                atOptions = { 'key' : '49e50f611a7b128eabe27b672810428b', 'format' : 'iframe', 'height' : 90, 'width' : 728, 'params' : {} };
             </script>
             <script src="https://www.highperformanceformat.com/49e50f611a7b128eabe27b672810428b/invoke.js"></script>
         </div>
@@ -45,34 +39,15 @@
             <div class="main-content">
                 <div class="card">
                     <h2>🗣️ Análisis Politik</h2>
-                    <p style="color:#0a3d62; margin-bottom:20px;">Espacio de reflexión y debate respetuoso sobre el contexto político actual.</p>
-                    
-                    <ul class="post-list">
-                        <li>
-                            <a href="#">🔍 ¿Qué nos depara el futuro político?</a>
-                            <small>Publicado ayer | 15 comentarios</small>
-                        </li>
-                        <li>
-                            <a href="#">👥 El papel de la juventud en la política actual</a>
-                            <small>Publicado hace 4 días | 8 comentarios</small>
-                        </li>
-                        <li>
-                            <a href="#">📊 Debate: Importar vs. producir localmente</a>
-                            <small>Publicado hace 1 semana | 22 comentarios</small>
-                        </li>
-                        <li>
-                            <a href="#">🌐 Relaciones internacionales: nuevos horizontes</a>
-                            <small>Publicado hace 2 semanas | 5 comentarios</small>
-                        </li>
-                        <li>
-                            <a href="#">📝 Reformas económicas: ¿qué esperar?</a>
-                            <small>Publicado hace 3 semanas | 12 comentarios</small>
-                        </li>
-                    </ul>
-                    
+                    <p style="color:#0a3d62; margin-bottom:20px;">Espacio de reflexión y debate respetuoso.</p>
+                    <div id="lista-politik"><p style="color:#7f8c8d;">Cargando análisis...</p></div>
+                    <div id="visor-politik" style="display: none;">
+                        <a href="#" onclick="volverALista()" style="color:#e67e22; display: inline-block; margin-bottom: 20px;">← Volver a la lista</a>
+                        <div id="contenido-politik"></div>
+                    </div>
                     <div class="smartlink-box" style="margin-top:30px;">
                         <strong>💬 ¿Tienes algo que decir?</strong><br>
-                        <p style="margin:10px 0;">Tu opinión es importante. Participa en nuestros debates y comparte tu perspectiva.</p>
+                        <p style="margin:10px 0;">Tu opinión es importante.</p>
                         <a href="#" style="color: #d35400; font-weight: bold;">Únete a la conversación >>></a>
                     </div>
                 </div>
@@ -87,17 +62,10 @@
                         <li><a href="../recetas/">🍲 Recetas</a></li>
                     </ul>
                 </div>
-
                 <div class="card">
                     <h3>📈 Temas populares</h3>
-                    <ul class="post-list">
-                        <li><a href="#">Importar vs. producir</a></li>
-                        <li><a href="#">Futuro político</a></li>
-                        <li><a href="#">Juventud y política</a></li>
-                    </ul>
+                    <div id="populares-sidebar"><p style="color:#7f8c8d;">Cargando...</p></div>
                 </div>
-
-                <!-- Native Banner - Adsterra -->
                 <div class="card" style="min-height: 250px; text-align: center; background: #ecf0f1; border: 1px dashed #bdc3c7;">
                     <script async="async" data-cfasync="false" src="https://pl29198215.profitablecpmratenetwork.com/461940b1f9fb7e7ce9a3de48cf4b657b/invoke.js"></script>
                     <div id="container-461940b1f9fb7e7ce9a3de48cf4b657b"></div>
@@ -110,11 +78,73 @@
         <p>© 2026 Rincón Cubano | Hecho con orgullo desde la Isla y para el mundo</p>
     </footer>
 
-    <!-- JavaScript para transiciones -->
-<script src="js/script.js"></script>
-    
-    <!-- Social Bar - Adsterra -->
+    <script src="../js/script.js"></script>
     <script src="https://pl29198216.profitablecpmratenetwork.com/50/2a/f2/502af290221df110ef04f537b763bf76.js"></script>
 
+    <script>
+        const GITHUB_USER = 'rincon-cubano';
+        const REPO_NAME = 'rincon-cubano';
+        const CONTENT_PATH = 'contenido/politik';  // ← CAMBIADO
+        let articulos = [];
+        
+        async function cargarArticulos() {
+            try {
+                const url = `https://api.github.com/repos/${GITHUB_USER}/${REPO_NAME}/contents/${CONTENT_PATH}`;
+                const response = await fetch(url);
+                const files = await response.json();
+                articulos = files.filter(f => f.name.endsWith('.md'));
+                mostrarLista();
+                mostrarPopulares();
+            } catch (e) {
+                document.getElementById('lista-politik').innerHTML = '<p>Error al cargar.</p>';
+            }
+        }
+        
+        function mostrarLista() {
+            if (articulos.length === 0) {
+                document.getElementById('lista-politik').innerHTML = '<p>No hay análisis aún. Crea tu primer archivo .md en contenido/politik/</p>';
+                return;
+            }
+            let html = '<ul class="post-list">';
+            articulos.forEach((a, i) => {
+                const nombre = a.name.replace('.md', '').replace(/-/g, ' ');
+                html += `<li><a href="#" onclick="verArticulo(${i}); return false;">${nombre}</a></li>`;
+            });
+            html += '</ul>';
+            document.getElementById('lista-politik').innerHTML = html;
+        }
+        
+        function mostrarPopulares() {
+            const pop = articulos.slice(0, 3);
+            let html = '<ul class="post-list">';
+            pop.forEach((a, i) => {
+                const nombre = a.name.replace('.md', '').replace(/-/g, ' ');
+                html += `<li><a href="#" onclick="verArticulo(${i}); return false;">${nombre}</a></li>`;
+            });
+            html += '</ul>';
+            document.getElementById('populares-sidebar').innerHTML = html || '<p>No hay artículos.</p>';
+        }
+        
+        async function verArticulo(index) {
+            const a = articulos[index];
+            try {
+                const url = `https://raw.githubusercontent.com/${GITHUB_USER}/${REPO_NAME}/main/${CONTENT_PATH}/${a.name}`;
+                const response = await fetch(url);
+                const md = await response.text();
+                document.getElementById('contenido-politik').innerHTML = marked.parse(md);
+                document.getElementById('lista-politik').style.display = 'none';
+                document.getElementById('visor-politik').style.display = 'block';
+            } catch (e) {
+                alert('Error al cargar');
+            }
+        }
+        
+        function volverALista() {
+            document.getElementById('lista-politik').style.display = 'block';
+            document.getElementById('visor-politik').style.display = 'none';
+        }
+        
+        cargarArticulos();
+    </script>
 </body>
 </html>
