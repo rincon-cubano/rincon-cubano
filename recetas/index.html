@@ -7,6 +7,54 @@
     <link rel="icon" type="image/png" href="../img/logo.png">
     <link rel="stylesheet" href="../css/estilo.css">
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        .receta-destacada {
+            border-bottom: 2px solid #e67e22;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+        }
+        .receta-destacada h2 {
+            font-size: 28px;
+            border-bottom: none;
+            margin-bottom: 10px;
+        }
+        .receta-destacada .metadata {
+            color: #7f8c8d;
+            font-size: 14px;
+            margin-bottom: 15px;
+            display: flex;
+            gap: 15px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+        .sidebar .post-list li {
+            padding: 12px 0;
+        }
+        .sidebar .post-list a {
+            font-size: 16px;
+            color: #0a3d62;
+        }
+        .sidebar .post-list a:hover {
+            color: #e67e22;
+        }
+        .loading-message {
+            text-align: center;
+            padding: 40px;
+            color: #7f8c8d;
+        }
+        .info-receta {
+            display: flex;
+            gap: 20px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+        .info-receta span {
+            background: #f0f7ff;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+    </style>
 </head>
 <body>
 
@@ -38,17 +86,8 @@
         <div class="grid">
             <div class="main-content">
                 <div class="card">
-                    <h2>🍲 Nuestras Recetas Cubanas</h2>
-                    <p style="color:#0a3d62; margin-bottom:20px;">Sabores auténticos de la Isla.</p>
-                    <div id="lista-recetas"><p style="color:#7f8c8d;">Cargando recetas...</p></div>
-                    <div id="visor-receta" style="display: none;">
-                        <a href="#" onclick="volverALista()" style="color:#e67e22; display: inline-block; margin-bottom: 20px;">← Volver a la lista</a>
-                        <div id="contenido-receta"></div>
-                    </div>
-                    <div class="smartlink-box" style="margin-top:30px;">
-                        <strong>🔥 ¿Quieres apoyar este proyecto?</strong><br>
-                        <p style="margin:10px 0;">Descubre contenido exclusivo.</p>
-                        <a href="#" target="_blank" style="color: #d35400; font-weight: bold;">Haz clic aquí >>></a>
+                    <div id="contenedor-receta-principal">
+                        <div class="loading-message">⏳ Cargando receta...</div>
                     </div>
                 </div>
             </div>
@@ -62,10 +101,20 @@
                         <li><a href="../politik/">🗣️ Politik</a></li>
                     </ul>
                 </div>
+
                 <div class="card">
-                    <h3>⭐ Más populares</h3>
-                    <div id="populares-sidebar"><p style="color:#7f8c8d;">Cargando...</p></div>
+                    <h3>🍲 Más Recetas</h3>
+                    <div id="listado-otras-recetas">
+                        <div class="loading-message">Cargando...</div>
+                    </div>
                 </div>
+
+                <div class="smartlink-box">
+                    <strong>🔥 ¿Quieres apoyar este proyecto?</strong><br>
+                    <p style="margin:10px 0;">Descubre contenido exclusivo.</p>
+                    <a href="#" target="_blank" style="color: #d35400; font-weight: bold;">Haz clic aquí >>></a>
+                </div>
+
                 <div class="card" style="min-height: 250px; text-align: center; background: #ecf0f1; border: 1px dashed #bdc3c7;">
                     <script async="async" data-cfasync="false" src="https://pl29198215.profitablecpmratenetwork.com/461940b1f9fb7e7ce9a3de48cf4b657b/invoke.js"></script>
                     <div id="container-461940b1f9fb7e7ce9a3de48cf4b657b"></div>
@@ -84,67 +133,109 @@
     <script>
         const GITHUB_USER = 'rincon-cubano';
         const REPO_NAME = 'rincon-cubano';
-        const CONTENT_PATH = 'contenidos/recetas';  // ← CAMBIADO
+        const CONTENT_PATH = 'contenidos/recetas';
         let recetas = [];
-        
+
         async function cargarRecetas() {
             try {
                 const url = `https://api.github.com/repos/${GITHUB_USER}/${REPO_NAME}/contents/${CONTENT_PATH}`;
                 const response = await fetch(url);
                 const files = await response.json();
                 recetas = files.filter(f => f.name.endsWith('.md'));
-                mostrarLista();
-                mostrarPopulares();
-            } catch (e) {
-                document.getElementById('lista-recetas').innerHTML = '<p>Error al cargar.</p>';
+                recetas.sort((a, b) => b.name.localeCompare(a.name));
+                
+                if (recetas.length > 0) {
+                    cargarRecetaPrincipal(0);
+                    mostrarListadoRecetas();
+                } else {
+                    document.getElementById('contenedor-receta-principal').innerHTML = 
+                        '<p>No hay recetas publicadas aún. Crea tu primer archivo .md en ' + CONTENT_PATH + '/</p>';
+                }
+            } catch (error) {
+                document.getElementById('contenedor-receta-principal').innerHTML = 
+                    '<p>Error al cargar. Verifica la ruta: ' + CONTENT_PATH + '</p>';
             }
         }
-        
-        function mostrarLista() {
-            if (recetas.length === 0) {
-                document.getElementById('lista-recetas').innerHTML = '<p>No hay recetas aún. Crea tu primer archivo .md en contenido/recetas/</p>';
+
+        async function cargarRecetaPrincipal(index) {
+            const receta = recetas[index];
+            const contenedor = document.getElementById('contenedor-receta-principal');
+            contenedor.innerHTML = '<div class="loading-message">⏳ Cargando receta...</div>';
+            
+            try {
+                const url = `https://raw.githubusercontent.com/${GITHUB_USER}/${REPO_NAME}/main/${CONTENT_PATH}/${receta.name}`;
+                const response = await fetch(url);
+                const markdown = await response.text();
+                const html = marked.parse(markdown);
+                
+                contenedor.innerHTML = `
+                    <div class="receta-destacada">
+                        <div class="metadata">
+                            <span>📅 Publicado el 20 de abril, 2026</span>
+                            <span>✍️ Por Rincón Cubano</span>
+                        </div>
+                        <div class="contenido-markdown">
+                            ${html}
+                        </div>
+                    </div>
+                `;
+                
+                actualizarListadoConActiva(index);
+            } catch (error) {
+                contenedor.innerHTML = '<p>Error al cargar el contenido.</p>';
+            }
+        }
+
+        function mostrarListadoRecetas() {
+            const contenedor = document.getElementById('listado-otras-recetas');
+            if (recetas.length <= 1) {
+                contenedor.innerHTML = '<p>Pronto más recetas...</p>';
                 return;
             }
+            
             let html = '<ul class="post-list">';
-            recetas.forEach((r, i) => {
-                const nombre = r.name.replace('.md', '').replace(/-/g, ' ');
-                html += `<li><a href="#" onclick="verReceta(${i}); return false;">${nombre}</a></li>`;
-            });
-            html += '</ul>';
-            document.getElementById('lista-recetas').innerHTML = html;
-        }
-        
-        function mostrarPopulares() {
-            const pop = recetas.slice(0, 3);
-            let html = '<ul class="post-list">';
-            pop.forEach((r, i) => {
-                const nombre = r.name.replace('.md', '').replace(/-/g, ' ');
-                html += `<li><a href="#" onclick="verReceta(${i}); return false;">${nombre}</a></li>`;
-            });
-            html += '</ul>';
-            document.getElementById('populares-sidebar').innerHTML = html || '<p>No hay recetas.</p>';
-        }
-        
-        async function verReceta(index) {
-            const r = recetas[index];
-            try {
-                const url = `https://raw.githubusercontent.com/${GITHUB_USER}/${REPO_NAME}/main/${CONTENT_PATH}/${r.name}`;
-                const response = await fetch(url);
-                const md = await response.text();
-                document.getElementById('contenido-receta').innerHTML = marked.parse(md);
-                document.getElementById('lista-recetas').style.display = 'none';
-                document.getElementById('visor-receta').style.display = 'block';
-            } catch (e) {
-                alert('Error al cargar');
+            for (let i = 1; i < recetas.length; i++) {
+                const receta = recetas[i];
+                const titulo = receta.name.replace('.md', '').replace(/-/g, ' ');
+                html += `
+                    <li>
+                        <a href="#" onclick="cambiarReceta(${i}); return false;">
+                            <strong>${titulo}</strong>
+                        </a>
+                    </li>
+                `;
             }
+            html += '</ul>';
+            contenedor.innerHTML = html;
         }
-        
-        function volverALista() {
-            document.getElementById('lista-recetas').style.display = 'block';
-            document.getElementById('visor-receta').style.display = 'none';
+
+        function cambiarReceta(index) {
+            cargarRecetaPrincipal(index);
         }
-        
-        cargarRecetas();
+
+        function actualizarListadoConActiva(indexActivo) {
+            const contenedor = document.getElementById('listado-otras-recetas');
+            if (recetas.length <= 1) return;
+            
+            let html = '<ul class="post-list">';
+            for (let i = 1; i < recetas.length; i++) {
+                const receta = recetas[i];
+                const titulo = receta.name.replace('.md', '').replace(/-/g, ' ');
+                const esActiva = (i === indexActivo);
+                
+                html += `
+                    <li style="${esActiva ? 'background: #f0f7ff; border-left: 3px solid #e67e22; padding-left: 10px;' : ''}">
+                        <a href="#" onclick="cambiarReceta(${i}); return false;" style="${esActiva ? 'color: #e67e22;' : ''}">
+                            <strong>${titulo}</strong>
+                        </a>
+                    </li>
+                `;
+            }
+            html += '</ul>';
+            contenedor.innerHTML = html;
+        }
+
+        window.onload = cargarRecetas;
     </script>
 </body>
 </html>
