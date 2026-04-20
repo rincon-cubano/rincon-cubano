@@ -1,0 +1,152 @@
+/* Estilos compartidos para todo Rincón Cubano */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+header {
+    background-color: #0a3d62;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    border-bottom: 5px solid #e67e22;
+}
+
+nav {
+    background-color: #1e5a7a;
+    padding: 10px;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #e67e22;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 0 15px;
+}
+
+/* Banner de anuncios */
+.ad-banner-top {
+    background-color: #ecf0f1;
+    min-height: 90px;
+    margin-bottom: 20px;
+    text-align: center;
+    border: 1px dashed #bdc3c7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #7f8c8d;
+}
+
+/* Grid para layouts */
+.grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+.card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+h2 {
+    color: #0a3d62;
+    border-bottom: 2px solid #e67e22;
+    padding-bottom: 5px;
+}
+
+h3 {
+    color: #0a3d62;
+}
+
+.btn {
+    display: inline-block;
+    background-color: #e67e22;
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.btn:hover {
+    background-color: #d35400;
+}
+
+/* SmartLink box */
+.smartlink-box {
+    background-color: #fff3e0;
+    border-left: 5px solid #e67e22;
+    padding: 15px;
+    margin: 20px 0;
+}
+
+/* Lista de artículos */
+.post-list {
+    list-style: none;
+    padding: 0;
+}
+
+.post-list li {
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.post-list a {
+    text-decoration: none;
+    color: #0a3d62;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.post-list a:hover {
+    color: #e67e22;
+}
+
+.post-list small {
+    color: #7f8c8d;
+    display: block;
+    margin-top: 5px;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #0a3d62;
+    color: white;
+    margin-top: 30px;
+}
+
+/* Responsive para móviles */
+@media (max-width: 768px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+}
